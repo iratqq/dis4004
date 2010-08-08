@@ -1134,8 +1134,10 @@ dis(rom_head *rom, FILE4 *fp)
 
 		if (np->jump_to != NO_JUMP) {
 			l = ohash_find(&label_hash, np->jump_to);
-			if (l == NULL)
-				printf("internal error, ignored...\n");
+			if (l == NULL) {
+				printf("cannot create label. maybe jump to outbound memory or non aligned adress.\n");
+				asprintf(&np->to_label, "0x%x", np->jump_to);
+			}
 			else
 				asprintf(&np->to_label, "L%d", l->num);
 		}
