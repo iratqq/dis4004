@@ -99,7 +99,7 @@ struct rom_entry {
 };
 typedef TAILQ_HEAD(, rom_entry) rom_head;
 
-void *
+static void *
 hash_alloc(size_t s, void *u)
 {
 	void *p = dis_xmalloc(s);
@@ -108,13 +108,13 @@ hash_alloc(size_t s, void *u)
 	return p;
 }
 
-void
+static void
 hash_free(void *p, size_t s, void *u)
 {
 	free(p);
 }
 
-void *
+static void *
 element_alloc(size_t s, void *u)
 {
 	return dis_xmalloc(s);
